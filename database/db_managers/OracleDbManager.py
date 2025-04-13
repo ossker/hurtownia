@@ -1,0 +1,135 @@
+import cx_Oracle
+from cx_Oracle import Connection
+
+from utils import get_oracle_connection
+
+# x = {
+#     "inzynierskie": [
+#         {
+#             "informatyka":{
+#                 "nazwa kierunkow": "",
+#                 "podgrupa": "",
+#                 "grupa": "",
+#             }
+#
+#         },
+#         {
+#             "matematyka":{
+#                 "nazwa kierunkow": "",
+#                 "podgrupa": "",
+#                 "grupa": "",
+#             }
+#         }
+#     ],
+#     "magisterskie": [
+#         {
+#             "informatyka": {
+#                 "nazwa kierunkow": "",
+#                 "podgrupa": "",
+#                 "grupa": "",
+#             }
+#         },
+#         {
+#             "pedagogika": {
+#                 "nazwa kierunkow": "...",
+#                 "podgrupa": "...",
+#                 "grupa": "humanistyczne",
+#             }
+#
+#         },
+#         {
+#             "pedagogika": {
+#                 "nazwa kierunkow": "...",
+#                 "podgrupa": "...",
+#                 "grupa": "gowniane",
+#
+#         },
+#     ]
+# }
+#
+# UCZELNIA | KIERUNEK | STUDENCI
+#
+# UCZELNIA | KIERUNEK | ABSOLWENCI
+
+class OracleDbManager:
+    def __init__(self) -> None:
+        self._connection = get_oracle_connection()
+
+    def __post_init__(self) -> None:
+        print("Tables created.")
+        # self._create_table_from_excel()
+        # self._create_table_from_csv()
+        # self._create_table_from_postgres()
+
+    @property
+    def connection(self) -> Connection:
+        return self._connection
+
+    def insert_many(self, sql: str, data: list[dict]) -> None:
+        cursor = self._connection.cursor()
+        try:
+            cursor.executemany(sql, data)
+            self._connection.commit()
+            print("Dane zostały dodane.")
+        except cx_Oracle.DatabaseError as e:
+            print(f"Błąd podczas dodawania danych: {e}")
+        finally:
+            cursor.close()
+
+    def get_data(self, query: str) -> list:
+        cursor = self._connection.cursor()
+
+        try:
+            cursor.execute(query)
+            data = cursor.fetchall()
+            columns = data.keys()
+            return [dict(zip(columns, row)) for row in data]
+
+        except cx_Oracle.DatabaseError as e:
+            print(f"Błąd podczas pobierania danych: {e}")
+            return []
+
+        finally:
+            cursor.close()
+
+    def _create_table_from_excel(self) -> None:
+        create_table1 = """
+            ...
+        """
+        create_something2 = """
+            ...
+        """
+        ...
+        self._execute_many([create_table1, create_something2])
+
+    def _create_table_from_csv(self) -> None:
+        create_table1 = """
+            ...
+        """
+        create_something2 = """
+            ...
+        """
+        ...
+        self._execute_many([create_table1, create_something2])
+
+    def _create_table_from_postgres(self) -> None:
+        create_table1 = """
+                    ...
+                """
+        create_something2 = """
+                    ...
+                """
+        ...
+        self._execute_many([create_table1, create_something2])
+
+
+    def _execute_many(self, list_to_execute: list[str]) -> None:
+        cursor = self._connection.cursor()
+        try:
+            for item_to_execute in list_to_execute:
+                cursor.execute(item_to_execute)
+            print("Executed.")
+        except cx_Oracle.DatabaseError as e:
+            print(f"Błąd: {e}")
+        finally:
+            cursor.close()

@@ -140,9 +140,8 @@ def load_to_db(data: dict) -> None:
     conn = get_oracle_connection()
     create_table_if_not_exists(conn)
     wojewodztwa_data = list(data.keys())
-    wojewodztwa_z_id = get_wojewodztwa(conn)
-
     insert_wojewodztwo_data(conn, wojewodztwa_data)
+    wojewodztwa_z_id = get_wojewodztwa(conn)
     uczelnia_data = []
     wojewodztwa_dict = {woj[1].strip(): woj[0] for woj in wojewodztwa_z_id}
     for wojewodztwo, uczelnie in data.items():
