@@ -23,7 +23,8 @@ class PostgresDbManager:
             data = cursor.fetchall()
             return data
         except psycopg2.DatabaseError as e:
-            print(f"Error: {e}")
+            print("Cannot get data from Postgres!")
+            raise e
         finally:
             cursor.close()
 
@@ -39,6 +40,7 @@ class PostgresDbManager:
             self._connection.commit()
             print("Executed.")
         except psycopg2.DatabaseError as e:
-            print(f"Error: {e}")
+            print("Cannot execute queries to Postgres!")
+            raise e
         finally:
             cursor.close()
