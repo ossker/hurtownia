@@ -1,3 +1,4 @@
+from database import PostgresDbManager
 from etl import IExtractor
 from etl_implementation.extract.CSVExtractor import CSVExtractor
 from etl_implementation.extract.ExcelExtractor import ExcelExtractor
@@ -9,10 +10,10 @@ from injector import Module, multiprovider
 
 class ExtractorModule(Module):
     @multiprovider
-    def provide_extractors(self) -> list[IExtractor]:
+    def provide_extractors(self, db_manager: PostgresDbManager) -> list[IExtractor]:
         return [
             CSVExtractor(),
             ExcelExtractor(),
             JsonExtractor(),
-            PostgresExtractor(),
+            PostgresExtractor(db_manager),
         ]
