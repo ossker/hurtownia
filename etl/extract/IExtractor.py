@@ -5,5 +5,5 @@ import pandas as pd
 
 class IExtractor(ABC):
     @abstractmethod
-    def extract(self) -> pd.DataFrame:
+    def extract(self) -> dict[str, pd.DataFrame]:
         pass

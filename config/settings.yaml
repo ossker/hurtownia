@@ -10,7 +10,7 @@ oracle:
   host: localhost
   port: 1521
   service_name: xe
-  user: hurtownia
-  password: admin
+  user: system
+  password: oracle
 instant_client:
   path: C:\oraclexe\instantclient_23_7
