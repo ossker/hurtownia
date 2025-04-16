@@ -45,3 +45,15 @@ Uruchomienie bazy danych Oracle w Dockerze:
 docker pull oracleinanutshell/oracle-xe-11g
 docker run --name oracle-db -p 1521:1521 -d oracleinanutshell/oracle-xe-11g
 ```
+
+Uruchomienie już istniejących kontenerów z bazami danych:
+```bash
+docker start postgres-db
+docker start oracle-db
+```
+
+Wejście do bazy danych Postgres, która jest w Dockerze:
+```bash
+docker exec -it postgres-db bash
+psql -U postgres
+```
