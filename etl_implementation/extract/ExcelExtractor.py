@@ -4,6 +4,6 @@ from etl import IExtractor
 
 
 class ExcelExtractor(IExtractor):
-    def extract(self) -> pd.DataFrame:
+    def extract(self) -> dict[str, pd.DataFrame]:
         #TODO excel implementation
         ...
