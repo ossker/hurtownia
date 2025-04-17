@@ -1,4 +1,5 @@
 import cx_Oracle
+import sqlparse
 from cx_Oracle import Connection
 
 from utils import get_oracle_connection
@@ -113,15 +114,11 @@ class OracleDbManager:
         self._execute_many([create_table1, create_something2])
 
     def _create_table_from_postgres(self) -> None:
-        create_table1 = """
-                    ...
-                """
-        create_something2 = """
-                    ...
-                """
-        ...
-        self._execute_many([create_table1, create_something2])
+        self._execute_many_from_file("schema/from_postgres.sql")
 
+    def _execute_many_from_file(self, file_to_execute) -> None:
+        with open(file_to_execute, "r", encoding="utf-8") as f:
+            self._execute_many(sqlparse.split(f.read(), strip_semicolon=True))
 
     def _execute_many(self, list_to_execute: list[str]) -> None:
         cursor = self._connection.cursor()

@@ -10,7 +10,7 @@ class ExcelLoader(ILoader):
     def __init__(self, db_manager: OracleDbManager) -> None:
         self._db_manager = db_manager
 
-    def load(self, data: pd.DataFrame) -> None:
+    def load(self, data: dict[str, pd.DataFrame]) -> None:
         # self._db_manager.insert_many()
         # self._db_manager.insert_many()
         pass

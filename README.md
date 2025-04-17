@@ -33,3 +33,27 @@ Jeśli zapiszesz zależności w pliku requirements.txt, inni mogą łatwo odtwor
 ```bash
   $ pip install -r requirements.txt
 ```
+
+Uruchomienie bazy danych Postgres w Dockerze:
+```bash
+docker pull postgres
+docker run --name postgres-db -e POSTGRES_PASSWORD=qwerty -p 5432:5432 -d postgres
+```
+
+Uruchomienie bazy danych Oracle w Dockerze:
+```bash
+docker pull oracleinanutshell/oracle-xe-11g
+docker run --name oracle-db -p 1521:1521 -d oracleinanutshell/oracle-xe-11g
+```
+
+Uruchomienie już istniejących kontenerów z bazami danych:
+```bash
+docker start postgres-db
+docker start oracle-db
+```
+
+Wejście do bazy danych Postgres, która jest w Dockerze:
+```bash
+docker exec -it postgres-db bash
+psql -U postgres
+```

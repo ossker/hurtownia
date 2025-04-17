@@ -4,5 +4,5 @@ from etl import IExtractor
 
 
 class JsonExtractor(IExtractor):
-    def extract(self) -> pd.DataFrame:
+    def extract(self) -> dict[str, pd.DataFrame]:
         pass
