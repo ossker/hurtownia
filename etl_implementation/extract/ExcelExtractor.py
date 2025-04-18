@@ -5,5 +5,9 @@ from etl import IExtractor
 
 class ExcelExtractor(IExtractor):
     def extract(self) -> dict[str, pd.DataFrame]:
-        #TODO excel implementation
-        ...
+        path = "data/raw/students_dataset.xlsx"
+        df = pd.read_excel(path, sheet_name="Arkusz1")
+
+        return {
+            "students": df
+        }

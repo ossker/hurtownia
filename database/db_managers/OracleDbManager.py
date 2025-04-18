@@ -55,7 +55,6 @@ from utils import get_oracle_connection
 class OracleDbManager:
     def __init__(self) -> None:
         self._connection = get_oracle_connection()
-
     def __post_init__(self) -> None:
         print("Tables created.")
         # self._create_table_from_excel()
@@ -94,14 +93,16 @@ class OracleDbManager:
             cursor.close()
 
     def _create_table_from_excel(self) -> None:
-        create_table1 = """
-            ...
+        create_table_studenci = """
+            CREATE TABLE studenci (
+                IdStudentow NUMBER PRIMARY KEY,
+                ilosc NUMBER,
+                nazwaUczelni VARCHAR2(255),
+                nazwaKierunku VARCHAR2(255),
+                nazwaStopnia VARCHAR2(30)
+            )
         """
-        create_something2 = """
-            ...
-        """
-        ...
-        self._execute_many([create_table1, create_something2])
+        self._execute_many([create_table_studenci])
 
     def _create_table_from_csv(self) -> None:
         create_table1 = """
