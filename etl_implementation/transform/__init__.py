@@ -11,8 +11,8 @@ class TransformerModule(Module):
     @multiprovider
     def provide_transformers(self) -> list[ITransformer]:
         return [
-            # CSVTransformer(),
-            # ExcelTransformer(),
+            CSVTransformer(),
+            ExcelTransformer(),
             JsonTransformer(),
-            # PostgresTransformer(),
+            PostgresTransformer(),
         ]
