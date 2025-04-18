@@ -19,7 +19,7 @@ class CSVLoader(ILoader):
 
         self._db_manager.insert_many(
             """
-            INSERT INTO absolvenci_csv (id, ilosc, nazwa_uczelni, nazwa_kierunku, nazwa_stopnia)
+            INSERT INTO absolwenci (id, ilosc, nazwa_uczelni, nazwa_kierunku, nazwa_stopnia)
             VALUES (:id, :ilosc, :nazwa_uczelni, :nazwa_kierunku, :nazwa_stopnia)
             """,
             df.to_dict("records")
