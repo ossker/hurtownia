@@ -5,8 +5,8 @@ from utils import get_postgres_connection
 
 
 class PostgresDbManager:
-    def __init__(self) -> None:
-        self._connection = get_postgres_connection()
+    # def __init__(self) -> None:
+    #     self._connection = get_postgres_connection()
 
     def __post_init__(self) -> None:
         self._execute_many_from_file("data/raw/postgres/schema.sql")
