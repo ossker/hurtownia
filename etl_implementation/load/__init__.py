@@ -15,7 +15,7 @@ class LoaderModule(Module):
     def provide_loaders(self, db_manager: OracleDbManager) -> list[ILoader]:
         return [
             CSVLoader(db_manager),
-            ExcelLoader(db_manager),
-            JsonLoader(db_manager),
-            PostgresLoader(db_manager),
+            #ExcelLoader(db_manager),
+            #JsonLoader(db_manager),
+            #PostgresLoader(db_manager),
         ]
