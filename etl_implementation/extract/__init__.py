@@ -10,10 +10,11 @@ from injector import Module, multiprovider
 
 class ExtractorModule(Module):
     @multiprovider
-    def provide_extractors(self, db_manager: PostgresDbManager) -> list[IExtractor]:
+    #def provide_extractors(self, db_manager: PostgresDbManager) -> list[IExtractor]:
+    def provide_extractors(self) -> list[IExtractor]:
         return [
             CSVExtractor(),
-            ExcelExtractor(),
-            JsonExtractor(),
-            PostgresExtractor(db_manager),
+            #ExcelExtractor(),
+            #JsonExtractor(),
+            #PostgresExtractor(db_manager),
         ]
