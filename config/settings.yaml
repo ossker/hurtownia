@@ -10,7 +10,9 @@ oracle:
   host: localhost
   port: 1521
   service_name: xe
-  user: system
-  password: oracle
+  user: hurtownia
+  password: hurtownia
 instant_client:
   path: C:\oraclexe\instantclient_23_7
+json:
+  path: "data/raw/json/fields_of_study_data.json"

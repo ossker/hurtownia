@@ -12,8 +12,8 @@ class ExtractorModule(Module):
     @multiprovider
     def provide_extractors(self, db_manager: PostgresDbManager) -> list[IExtractor]:
         return [
-            CSVExtractor(),
-            ExcelExtractor(),
+            # CSVExtractor(),
+            # ExcelExtractor(),
             JsonExtractor(),
-            PostgresExtractor(db_manager),
+            # PostgresExtractor(db_manager),
         ]
