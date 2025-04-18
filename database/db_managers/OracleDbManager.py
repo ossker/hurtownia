@@ -105,17 +105,14 @@ class OracleDbManager:
         self._execute_many([create_table_studenci])
 
     def _create_table_from_csv(self) -> None:
-        create_table_absolwenci  = """
-        CREATE TABLE absolvenci_csv (
-            id NUMBER PRIMARY KEY,
-            ilosc NUMBER,
-            nazwa_uczelni VARCHAR2(255),
-            nazwa_kierunku VARCHAR2(255),
-            nazwa_stopnia VARCHAR2(255)
-        )
+        create_table1 = """
+            ...
         """
-        self._execute_many([create_table_absolwenci])
-
+        create_something2 = """
+            ...
+        """
+        ...
+        self._execute_many([create_table1, create_something2])
 
     def _create_table_from_postgres(self) -> None:
         self._execute_many_from_file("schema/from_postgres.sql")
