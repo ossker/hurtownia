@@ -11,6 +11,16 @@ class CSVLoader(ILoader):
         self._db_manager = db_manager
 
     def load(self, data: dict[str, pd.DataFrame]) -> None:
-        # self._db_manager.insert_many()
-        # self._db_manager.insert_many()
-        pass
+        df = data["rekordy"].rename(columns={
+            "nazwaUczelni": "nazwa_uczelni",
+            "nazwaKierunku": "nazwa_kierunku",
+            "nazwaStopnia": "nazwa_stopnia"
+        })
+
+        self._db_manager.insert_many(
+            """
+            INSERT INTO absolvenci_csv (id, ilosc, nazwa_uczelni, nazwa_kierunku, nazwa_stopnia)
+            VALUES (:id, :ilosc, :nazwa_uczelni, :nazwa_kierunku, :nazwa_stopnia)
+            """,
+            df.to_dict("records")
+        )

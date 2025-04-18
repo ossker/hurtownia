@@ -12,7 +12,7 @@ class TransformerModule(Module):
     def provide_transformers(self) -> list[ITransformer]:
         return [
             CSVTransformer(),
-            ExcelTransformer(),
-            JsonTransformer(),
-            PostgresTransformer(),
+            #ExcelTransformer(),
+            #JsonTransformer(),
+            #PostgresTransformer(),
         ]
