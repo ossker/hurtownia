@@ -2,19 +2,16 @@ import pandas as pd
 
 from etl import ITransformer
 
+
 class JsonTransformer(ITransformer):
     def transform(self, data: dict[str, pd.DataFrame]) -> dict:
-
         df = data.get("json_uni_data")
-
-        # Przygotowanie danych do wstawienia
         rows_grupy = set()
         rows_podgrupy = set()
         rows_nazwy_kierunkow = set()
         rows_stopnie = set()
         rows_kierunki = []
-        
-        # Dla każdej linii w DataFrame
+
         for _, row in df.iterrows():
             stopien = row.get('stopien', None)
             kierunek = row.get('kierunek', None)
@@ -22,33 +19,24 @@ class JsonTransformer(ITransformer):
             podgrupa = row.get('podgrupa', None)
             grupa = row.get('grupa', None)
 
-            # Pomijanie wierszy, które nie mają wymaganych danych
-            if not stopien or not kierunek or not nazwa_kierunkow or not podgrupa or not grupa:
+            if not all([stopien, kierunek, nazwa_kierunkow, podgrupa, grupa]):
                 print(f"Brak wymaganych danych w wierszu: {row}")
                 continue
 
             if stopien.strip().lower() == "brak_danych":
                 continue
-            
-            # Zbieranie unikalnych grup, podgrup, stopni
+
             rows_grupy.add(grupa)
             rows_stopnie.add(stopien)
-
-            # Zbieranie unikalnych podgrup jako pary (nazwa_podgrupy, grupa)
             rows_podgrupy.add((podgrupa, grupa))
 
-            # Zbieranie unikalnych nazw kierunków jako pary (nazwa_kierunku, nazwa_podgrupy)
             rows_nazwy_kierunkow.add((nazwa_kierunkow, podgrupa))
 
-            # Zbieranie danych o kierunkach
             rows_kierunki.append({
                 "stopien": stopien,
-                "nazwaKierunku": kierunek,
-                "nazwaKierunkow": nazwa_kierunkow
+                "nazwa": kierunek,
+                "nazwa_kierunkow": nazwa_kierunkow
             })
-        
-        print(rows_grupy)
-
         
         rows_grupy = {grupa.strip().lower() for grupa in rows_grupy}
         rows_stopnie = {stopien.strip().lower() for stopien in rows_stopnie}
@@ -66,8 +54,8 @@ class JsonTransformer(ITransformer):
         rows_kierunki = [
             {
                 "stopien": kierunek["stopien"].strip().lower(),
-                "nazwaKierunku": kierunek["nazwaKierunku"].strip().lower(),
-                "nazwaKierunkow": kierunek["nazwaKierunkow"].strip().lower(),
+                "nazwa": kierunek["nazwa"].strip().lower(),
+                "nazwaKierunkow": kierunek["nazwa_kierunkow"].strip().lower(),
             }
             for kierunek in rows_kierunki
         ]
