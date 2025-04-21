@@ -1,6 +1,7 @@
 from injector import Binder
 
 from etl_implementation.ETLPipeline import ETLPipeline
+from etl_implementation.StopienEnum import StopienEnum
 from etl_implementation.extract import *
 from etl_implementation.transform import *
 from etl_implementation.load import *

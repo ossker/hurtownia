@@ -6,6 +6,9 @@ __pycache__
 *.sqlite3
 media
 
+/config/settings.yaml
+settings.yaml
+
 # Backup files #
 *.bak
 
