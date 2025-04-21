@@ -1,0 +1,18 @@
+postgres:
+  host: localhost
+  port: 5432
+  dbname: dbname
+  user: user
+  password: password
+uni_dataset:
+  path: data/raw/uczelnie_data_set.xlsx
+oracle:
+  host: localhost
+  port: 1521
+  service_name: xe
+  user: user
+  password: password
+instant_client:
+  path: C:\...\...
+json:
+  path: "data/raw/json/fields_of_study_data.json"

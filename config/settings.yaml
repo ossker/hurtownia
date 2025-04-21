@@ -3,15 +3,15 @@ postgres:
   port: 5432
   dbname: postgres
   user: postgres
-  password: qwerty
+  password: postgres
 uni_dataset:
   path: data/raw/uczelnie_data_set.xlsx
 oracle:
   host: localhost
   port: 1521
   service_name: xe
-  user: system
-  password: oracle
+  user: hurtownia
+  password: admin
 instant_client:
   path: C:\oraclexe\instantclient_23_7
 json:

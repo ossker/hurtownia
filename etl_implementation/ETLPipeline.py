@@ -3,6 +3,7 @@ from injector import inject
 from etl.extract import IExtractor
 from etl.load import ILoader
 from etl.transform import ITransformer
+from etl_implementation.load import FactsLoader
 
 
 class ETLPipeline:
@@ -11,10 +12,12 @@ class ETLPipeline:
                  extractors: list[IExtractor],
                  transformers: list[ITransformer],
                  loaders: list[ILoader],
+                 facts_loader: FactsLoader,
                  ) -> None:
         self._extractors = extractors
         self._transformers = transformers
         self._loaders = loaders
+        self._facts_loader = facts_loader
 
     def run(self) -> None:
         print(f"Running: {self.__class__.__name__}")
@@ -27,6 +30,6 @@ class ETLPipeline:
             loader.load(data_transformed)
             print(f"Completed.")
 
-        # TODO join all above
+        self._facts_loader.load()
 
         print(f"Completed: {self.__class__.__name__}")
