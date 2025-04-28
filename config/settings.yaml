@@ -11,7 +11,7 @@ oracle:
   port: 1521
   service_name: xe
   user: hurtownia
-  password: admin
+  password: hurtownia
 instant_client:
   path: C:\oraclexe\instantclient_23_7
 json:
